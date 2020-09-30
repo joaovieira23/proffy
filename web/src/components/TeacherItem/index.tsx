@@ -3,25 +3,38 @@ import React from 'react';
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 import './styles.css';
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+};
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://avatars1.githubusercontent.com/u/45154356?s=460&u=3ae25f40bfcf6c661c7fad6f27ea1f471acf88ac&v=4" alt="João Victor Vieira" />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>João Victor Vieira</strong>
-          <span>Matemática</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>Entusiasta das melhores tecnologias de matemática avançada
-            <br /><br />
-          Apaixonado por números e por mudar a vida das pessoas através da matemática. Mais de 200 mil pessoas já foram impactadas com alguma de minhas aulas
-          </p>
+      <p>
+        {teacher.bio}
+      </p>
 
       <footer>
         <p>
           Preço/Hora
-              <strong>R$ 150,00</strong>
+              <strong>R$ {teacher.cost}</strong>
         </p>
         <button type="button">
           <img src={whatsappIcon} alt="Whatsapp" />
